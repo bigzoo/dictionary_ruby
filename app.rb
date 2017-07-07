@@ -24,3 +24,13 @@ post('/word/saved') do
   new_word.save
   erb(:save_word_success)
 end
+
+post('/definition/saved') do
+  definition = params.fetch('definition')
+  new_definition = Definition.new(definition: definition)
+  new_definition.save_def
+  word_id = params.fetch('word_id').to_i
+  @word = Word.find(word_id)
+  @word.add_definition(new_definition)
+  erb(:save_definition_success)
+end
