@@ -12,6 +12,12 @@ get('/word/new') do
   erb(:word_new)
 end
 
+get('/word/:id') do
+  id = params.fetch('id').to_i
+  @word = Word.find(id)
+  erb(:word)
+end
+
 post('/word/saved') do
   word = params.fetch('word')
   new_word = Word.new(word: word)
