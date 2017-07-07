@@ -1,5 +1,12 @@
 <h3>You are viewing "<%=@word.word%>"</h3>
 <hr>
+<ul>
+<%@word.definitions.each() do |definition|%>
+<li><%=definition.definition%></li>
+<br>
+<% end %>
+</ul>
+<hr>
 <form class="form-horizontal" action="/definition/saved" method="post">
   <input id='word_id' name='word_id' type='hidden' value='<%= @word.id() %>'>
   <div class="form-group">
