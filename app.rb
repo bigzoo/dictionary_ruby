@@ -4,6 +4,7 @@ require('./lib/dictionary')
 also_reload('lib/**/*.rb')
 
 get('/') do
+  @dictionary = Word.all
   erb(:index)
 end
 
@@ -13,7 +14,7 @@ end
 
 post('/word/saved') do
   word = params.fetch('word')
-  new_word = Word.new(word: 'word')
+  new_word = Word.new(word: word)
   new_word.save
   erb(:save_word_success)
 end
