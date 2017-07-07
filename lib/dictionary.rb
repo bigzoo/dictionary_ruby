@@ -15,13 +15,29 @@ class Word
   define_singleton_method(:all) do
     @@words
   end
+
+  define_method(:add_definition) do |definition|
+    @definitions.push(definition)
+  end
+
+  define_singleton_method(:find) do |id|
+    found_word = nil
+    @@words.each do |word|
+      found_word = word if word.id.eql?(id)
+    end
+    found_word
+  end
+
+  define_singleton_method(:clear) do
+    @@words = []
+  end
 end
 
 class Definition
   @@definitions = []
-  attr_reader(:definition)
+  attr_reader(:definition, :id)
 
-  define_method(:initialize) do |_definition|
+  define_method(:initialize) do |attributes|
     @definition = attributes.fetch(:definition)
     @id = @@definitions.length.+(1)
   end
