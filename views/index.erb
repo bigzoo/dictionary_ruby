@@ -1,3 +1,10 @@
 <h1>Welcome. This is your personal dictionary</h1>
+<hr>
+Here is a list of your saved words.
+<%@dictionary.each() do |word|%>
 <br>
+<a href="/word/<%=word.id%>"><%=word.word%></a>
+<br>
+<%end%>
 <a href="/word/new">Click here to add a new word</a>
+<hr>
