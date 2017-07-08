@@ -20,8 +20,14 @@ end
 
 post('/word/saved') do
   word = params.fetch('word')
+  definition = params.fetch('definition')
   new_word = Word.new(word: word)
   new_word.save
+  unless definition == ''
+    new_definition = Definition.new(definition: definition)
+    new_definition.save_def
+    new_word.add_definition(new_definition)
+  end
   erb(:save_word_success)
 end
 
